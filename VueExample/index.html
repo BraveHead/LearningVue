@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/._vue@2.2.6@vue/dist/vue.min.js"></script>
+</head>
+<body>
+<!--属性与方法-->
+<div id="example">
+    <p>{{$data.a}}</p>
+</div>
+
+<!--模板语法-->
+<span id="app-1">我是{{msg}}</span>
+
+<span v-once class="same">这个永远不会改变：{{message}}</span>
+
+<p v-html="text" id="html"></p>
+
+<div id="js" v-bind:id="'id-' + number">{{(number === 1) ? 'yes':'no'}}</div>
+
+</body>
+<script>
+    let data = {a:1};
+    let vm = new Vue({
+      el:'#example',
+      data:data,
+      created: function () {
+        console.log('a is' + this.a);
+      }
+    });
+
+    vm.$watch('a',function (newVal, oldVal) {
+      console.log(newVal, oldVal);
+    });
+
+    let app1 = new Vue({
+      el:'#app-1',
+      data: {
+        msg:'sb'
+      }
+    });
+
+    let same = new Vue({
+      el:'.same',
+      data:{
+        message:"never"
+      }
+    });
+
+    let html = new Vue({
+      el:'#html',
+      data: {
+        text: '<p>sb</p><p>2b</p>'
+      }
+    });
+
+
+    let Js = new Vue({
+      el:'#js',
+      data: {
+        number: 2
+      }
+    });
+
+
+</script>
+</html>
