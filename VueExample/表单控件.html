@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单控件</title>
+    <script src="node_modules/._vue@2.2.6@vue/dist/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app1">
+    <input type="radio" v-model="picked" value="one" id="one"/>
+    <label for="one">one</label>
+
+    <input type="radio" v-model="picked" value="two" id="two"/>
+    <label for="two">two</label>
+
+    <br/>
+    <span>Picked: {{picked}}</span>
+</div>
+
+<div id="app2">
+    <select v-model="selected">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>Selected: {{selected}}</span>
+</div>
+
+<div id="app3">
+    <select v-model="selected">
+        <option v-for="item in options" v-bind:value="item.value">
+            {{item.text}}
+        </option>
+    </select>
+    <span>Selected： {{selected}}</span>
+</div>
+
+<div id="app4">
+    <input type="radio" v-model="picked"  v-bind:value="a"  v-on:click="clicked()"/>
+    <span>{{picked}}</span>
+</div>
+
+<div id="app5">
+    <input type="text" v-model.lazy="text"/>
+    <span>{{text}}</span>
+</div>
+
+
+<script>
+new Vue({
+  el:'#app1',
+  data: {
+    picked: ''
+  }
+});
+    new Vue({
+      el:'#app2',
+      data: {
+        selected:''
+      }
+    });
+
+    new Vue({
+      el:'#app3',
+      data: {
+        selected: 'A',
+        options: [
+          {text:'one', value:'A'},
+          {text:'two', value:'B'},
+          {text:'thr', value:'C'},
+        ]
+      }
+    });
+
+    new Vue({
+      el:'#app4',
+      data: {
+        picked: false,
+        a:'sb'
+      },
+      methods: {
+        clicked: function () {
+          alert(this.a);
+        }
+      }
+
+    });
+    new Vue({
+      el:'#app5',
+      data: {
+        text: 'begin'
+      }
+    });
+</script>
+</body>
+</html>

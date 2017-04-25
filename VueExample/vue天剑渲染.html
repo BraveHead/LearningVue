@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+    <script src="node_modules/._vue@2.2.6@vue/dist/vue.min.js"></script>
+</head>
+<body>
+
+<div v-if="ok" class="test1">ok</div>
+<div v-else >no</div>
+
+
+<template v-if="ok1" id="test2" >
+    <h1>title</h1>
+    <h1>title1</h1>
+    <h1>title2</h1>
+</template>
+
+<div v-if=" num > 0.5" id="random">
+    Now you see me
+</div>
+<div v-else>
+    Now you don't
+</div>
+
+<template v-if="loginType === 'username'">
+    <label>Username</label>
+    <input placeholder="Enter your username">
+</template>
+<template v-else>
+    <label>Email</label>
+    <input placeholder="Enter your email address">
+</template>
+
+<ul id="test5">
+    <template v-for="item in items">
+        <li>{{item.name}}</li>
+    </template>
+</ul>
+
+<ul id="test6">
+    <li v-for="(value, key, index) in object">
+        {{key}} : {{value}} : {{index}}
+    </li>
+</ul>
+
+
+<ul id="test4">
+    <li v-for="(item, index) in items">items- + {{index}} + {{items.num}}</li>
+</ul>
+
+
+<script>
+    let app = new Vue({
+      el:'.test1',
+      data:{
+        ok: true,
+      }
+    });
+
+    let app2 = new Vue({
+      el:'#test2',
+      data: {
+        ok1: false
+      }
+    });
+
+    let app3 = new Vue({
+      el:'#random',
+      data: {
+        num : 0.8
+      }
+    });
+
+    let app4 = new Vue({
+      el: '#test4',
+      data: {
+        items:[
+          {'num':'one'},
+          {'num':'two'}
+        ]
+      }
+    });
+
+    let app5 = new Vue({
+      el:'#test5',
+      data: {
+        items:[
+          {'name':'zhangshun'},
+          {'name':'zhangsan'},
+          {'name':'sb'}
+        ]
+      }
+    });
+    let app6 = new Vue({
+      el:'#test6',
+      data: {
+        object: {
+          num1: '123',
+          num2: '234',
+          num3: '345'
+        }
+      }
+    });
+</script>
+</body>
+</html>

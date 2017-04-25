@@ -20,6 +20,15 @@
 
 <div id="js" v-bind:id="'id-' + number">{{(number === 1) ? 'yes':'no'}}</div>
 
+<!--计算属性-->
+<div id="app-3">
+    <p>Original message: "{{message}}," "time:" {{now}}</p>
+    <p>Computed reversed message: "{{message}}" "time" {{now1}}</p>
+</div>
+
+<div id="app-4">
+    <p v-bind="changeName()">MyName is: {{fullName}}</p>
+</div>
 </body>
 <script>
     let data = {a:1};
@@ -61,6 +70,56 @@
       el:'#js',
       data: {
         number: 2
+      }
+    });
+
+
+//    let app3 = new Vue({
+//      el:'#app-3',
+//      data:{
+//        message:'Hello',
+//        dateTime: Date.now()
+//      },
+//      methods: {
+//       now1: function () {
+//         return this.dateTime;
+//       }
+//      },
+//      computed: {
+//        reverseMessage: function () {
+//          return this.message.split('').reverse().join('');
+//        },
+//        now: function () {
+//          return this.dateTime;
+//        }
+//      }
+//    });
+
+    let app4 = new Vue({
+      el:'#app-4',
+      data: {
+        firstName:'header',
+        lastName:'footer',
+        fullName:'header footer'
+      },
+      computed: {
+        fullName:  {
+          //getter
+          get: function () {
+            return this.fullName = this.firstName + this.lastName;
+          },
+          //setter
+          set: function (val) {
+            let fullArr = fullName.split('');
+            this.firstName = fullArr[0];
+            this.lastName = fullArr[fullName.length - 1];
+          }
+        }
+      },
+      methods: {
+        changeName: function () {
+           return this.fullName = this.firstName + this.lastName;
+        }
       }
     });
 

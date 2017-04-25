@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="node_modules/._vue@2.2.6@vue/dist/vue.min.js"></script>
+</head>
+<body>
+
+<div id="example">
+    <my-component></my-component>
+</div>
+
+<div id="example1">
+    <child message="Hello"></child>
+</div>
+
+<script>
+    //注册
+    Vue.component('my-component',{
+      template: '<div>A custom component! {{text}}</div>',
+      data:function () {
+        return {
+          text :'sb'
+        }
+      }
+    });
+    //创建根实例
+    new Vue({
+      el: '#example'
+    });
+
+    Vue.component('child',{
+      //声明props
+      props: ['message'],
+      template: '<span>{{message}}</span>'
+    });
+    new Vue({
+      el: '#example1'
+    });
+</script>
+</body>
+</html>

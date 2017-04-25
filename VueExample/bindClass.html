@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定class</title>
+    <script src="node_modules/._vue@2.2.6@vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div class="static" v-bind:class="{active: isActive}" v-on:click="clicked">123</div>
+
+<div id="app-1" v-bind:class="ObjClass">234</div>
+
+<a v-bind:href="url" id="link">链接</a>
+
+<script>
+    let static = new Vue({
+      el:'.static',
+      data: {
+        isActive: true
+      },
+      methods: {
+        clicked : function () {
+          this.isActive = false;
+        }
+      }
+    });
+
+    let app1 = new Vue({
+      el:'#app-1',
+      data: {
+        ObjClass: {
+          isActive: true,
+          hasError: false
+        }
+      }
+    });
+
+    let app2 = new Vue({
+      el:'#link',
+      data:{
+        url:'www.baidu.com'
+      }
+    });
+</script>
+</body>
+</html>

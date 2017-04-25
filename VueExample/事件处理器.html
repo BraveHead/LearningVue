@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理器</title>
+    <script src="node_modules/._vue@2.2.6@vue/dist/vue.min.js"></script>
+</head>
+<body>
+
+<div class="app1">
+    <button v-on:click="warn('wocao nimabi',$event)">点我访问源生button</button>
+</div>
+
+<div class="app2">
+    <!--复选框-->
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+</div>
+
+
+
+
+<script src="main.js"></script>
+</body>
+</html>
