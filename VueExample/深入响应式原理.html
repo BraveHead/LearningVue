@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深入响应式原理</title>
+    <script src="node_modules/._vue@2.2.6@vue/dist/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{message}}
+</div>
+
+
+    <example id="app1"></example>
+
+
+
+
+<script>
+    let app = new Vue({
+      el:'#app',
+      data: {
+        message: '智障'
+      },
+      methods: {
+
+      }
+    });
+
+    app.message = 'sb';
+    console.log(app.$el.textContent);
+
+    Vue.nextTick(function () {
+      app.$el.textContent = 'sb';
+      console.log(app.$el.textContent);
+    });
+
+    /*组件中使用vm.nextTick()*/
+    Vue.component('example', {
+      template: '<span v-on:click="updateMessage()">{{ message }}</span>',
+      data: function () {
+        return {
+          message: 'not updated'
+        }
+      },
+      methods: {
+        updateMessage: function () {
+          this.message = 'updated'
+          console.log(this.$el.textContent) // => '没有更新'
+          this.$nextTick(function () {
+            console.log(this.$el.textContent) // => '更新完成'
+          })
+        }
+      }
+    })
+
+    new Vue({
+      el:'#app1'
+    });
+
+</script>
+</body>
+</html>

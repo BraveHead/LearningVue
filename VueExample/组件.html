@@ -12,32 +12,34 @@
 </div>
 
 <div id="example1">
-    <child message="Hello"></child>
+    <input type="text" v-model="hello"/>
+    <child v-bind:message="hello"></child>
+    <child v-bind:message="12"></child>
 </div>
 
-<script>
-    //注册
-    Vue.component('my-component',{
-      template: '<div>A custom component! {{text}}</div>',
-      data:function () {
-        return {
-          text :'sb'
-        }
-      }
-    });
-    //创建根实例
-    new Vue({
-      el: '#example'
-    });
+<!--自定义事件-->
+<div id="example2">
+    <p>{{total}}</p>
+    <button-counter v-on:increment="incrementTotal()"></button-counter>
+    <button-counter v-on:increment="incrementTotal()"></button-counter>
+    <button-counter v-on:click.native="nativeFunction()"></button-counter>
+</div>
 
-    Vue.component('child',{
-      //声明props
-      props: ['message'],
-      template: '<span>{{message}}</span>'
-    });
-    new Vue({
-      el: '#example1'
-    });
-</script>
+<!--使用slot分发内容-->
+<div id="example3">
+    <child-component></child-component>
+</div>
+<!--单个slot-->
+<div id="example4">
+    <h1>我是父组件的标题</h1>
+    <my-component>
+        <p>这是一些初始内容</p>
+        <p>这是一些更多的初始内容</p>
+    </my-component>
+</div>
+
+
+
+<script src="zujian.js"></script>
 </body>
 </html>
