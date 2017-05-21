@@ -44,3 +44,33 @@
 .component-fade-enter, .component-fade-leave-active{
     opacity: 0;
 }
+
+.list-item{
+    margin-right: 10px;
+    display: inline-block;
+}
+.list-enter-active, .list-leave-active{
+    transition: all 1s;
+}
+.list-enter, .list-leave-active{
+    opacity: 0;
+    transform: translateY(30px);
+}
+.list-item-move{
+    transition:all 1s;
+}
+
+.list-complete-enter, .list-complete-leave-active{
+    opacity: 0;
+    transform: translateY(30px);
+}
+.list-complete-leave-active{
+    position: absolute;
+}
+.list-complete-item{
+    display: inline-block;
+    margin-right: 10px;
+}
+.list-complete-move{
+    transition: all 1s;
+}

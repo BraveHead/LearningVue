@@ -60,6 +60,85 @@
       'v-b': {
         template: '<div>Component B</div>'
       }
+    },
+    methods:{
+      clickVal: function () {
+        this.view = this.name;
+        console.log(this.view, this.name);
+      }
     }
   })
+  
+  new Vue({
+    el:'#example-5',
+    data: {
+      arr:[1,2,3,4,5,6,7,8,9],
+      nextNumber: 10,
+    },
+    methods: {
+      randomIndex: function () {
+        return Math.floor(Math.random()*(this.arr.length));
+      },
+      add: function () {
+        this.arr.splice(this.randomIndex(), 0, this.nextNumber++);
+      },
+      remove: function () {
+        this.arr.splice(this.randomIndex(), 1);
+      },
+      shuffle: function () {
+        this.arr = _.shuffle(this.arr);
+      }
+    }
+  });
+  
+  
+  new Vue({
+    el:'#staggered-list-demo',
+    data: {
+      query: '',
+      list: [
+        {msg: 'A'},
+        {msg: 'B'},
+        {msg: 'C'},
+        {msg: 'D'},
+        {msg: 'E'},
+        {msg: 'F'}
+      ]
+    },
+    computed: {
+      computedList: function (item) {
+        var vm = this;
+        return this.list.filter(function (item) {
+          return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
+        })
+      }
+    },
+    methods: {
+      beforeEnter: function (el) {
+        el.style.opacity = 0;
+        el.style.height= 0;
+      },
+      enter: function (el, done) {
+        var delay = el.dataset.index * 150
+        setTimeout(function () {
+          Velocity(
+            el,
+            { opacity: 1, height: '1.6em' },
+            { complete: done }
+          )
+        }, delay)
+      },
+      leave: function (el, done) {
+        var delay = el.dataset.index * 150
+        setTimeout(function () {
+          Velocity(
+            el,
+            { opacity: 0, height: 0 },
+            { complete: done }
+          )
+        }, delay)
+      }
+    }
+  });
+  
 })();

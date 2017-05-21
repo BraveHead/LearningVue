@@ -42,15 +42,50 @@
 </div>
 
 <div id="example-3">
-    <input type="radio" value="v-a" id="a" name="view" v-model="name"/>
+    <input type="radio" value="v-a" id="a" name="view" @click="clickVal()" v-model="name"/>
     <label for="a">A</label>
-    <input type="radio" value="v-b" id="b" name="view" v-model="name"/>
+    <input type="radio" value="v-b" id="b" name="view" @click="clickVal()" v-model="name"/>
     <label for="b">B</label>
 
     <transition name="component-fade" mode="out-in">
         <component v-bind:is="view"></component>
     </transition>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<div id="example-5">
+    <button @click="shuffle">shuffle</button>
+    <button @click="add">add</button>
+    <button @click="remove">remove</button>
+    <transition-group name="list-complete" tag="ul">
+        <li v-for="item in arr" :key="item" class="list-complete-item">
+            {{item}}
+        </li>
+    </transition-group>
+</div>
+
+<!--列表的渐进过渡-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<div id="staggered-list-demo">
+    <input v-model="query"/>
+    <transition-group
+        name="staggered-fade"
+        tag="ul"
+        v-bind:css="false"
+        v-on:before-enter="beforeEnter"
+        v-on:enter="enter"
+        v-on:leave="leave"
+    >
+        <li
+         v-for="(item, index) in computedList"
+         v-bind:key="item.msg"
+         v-bind:data-index="index"
+        >
+            {{item.msg}}
+        </li>
+    </transition-group>
+</div>
+
 
 <script src="../node_modules/vue/dist/vue.js"></script>
 <script src="main.js"></script>
