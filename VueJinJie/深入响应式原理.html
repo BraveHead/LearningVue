@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深入响应式原理</title>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="item in arr">{{item}}</li>
+    </ul>
+    <ul>
+        <li v-for="item in obj">{{item}}</li>
+    </ul>
+</div>
+
+<div id="app1">
+    {{message}}
+</div>
+
+<div id="app2">
+    <example updateMessage></example>
+    <button v-on:click="">点我改变message</button>
+</div>
+
+
+<script src="node_modules/vue/dist/vue.min.js"></script>
+<script src="jinJie.js"></script>
+</body>
+</html>

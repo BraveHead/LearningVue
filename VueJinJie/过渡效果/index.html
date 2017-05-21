@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡效果</title>
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body>
+
+<div id="example-1">
+    <button @click="show = !show">
+        Toggle render
+    </button>
+    <transition name="slide-fade">
+        <p v-if="show">hello</p>
+    </transition>
+</div>
+
+
+<div id="example-2">
+    <button @click="show = !show">Toggle show</button>
+    <transition name="bounce">
+        <p v-if="show">Look at me!</p>
+    </transition>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<div id="example-4">
+    <button @click="show = !show">
+        Toggle
+    </button>
+    <transition
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:leave="leave"
+            v-bind:css="false"
+    >
+        <p v-if="show">
+            Demo
+        </p>
+    </transition>
+</div>
+
+<div id="example-3">
+    <input type="radio" value="v-a" id="a" name="view" v-model="name"/>
+    <label for="a">A</label>
+    <input type="radio" value="v-b" id="b" name="view" v-model="name"/>
+    <label for="b">B</label>
+
+    <transition name="component-fade" mode="out-in">
+        <component v-bind:is="view"></component>
+    </transition>
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
